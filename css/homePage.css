@@ -184,12 +184,13 @@
 
 .task-overview .overview__wrapper:hover {
   cursor: pointer;
-  width: 85%;
-  height: 315px;
+  transform: scale(1.1);
+  z-index: 2;
   transition: all .2s ease-in-out;
 }
 
 .task-overview .overview__wrapper{
+  position: relative;
   width: 80%;
   height: 300px;
   padding: 10px;
@@ -199,6 +200,17 @@
   overflow-y: scroll;
   transition: all .2s ease-in-out;
 }
+
+.task-overview .overview__wrapper .wrapper__action {
+  background-color: red;
+  display: flex;
+  justify-content: flex-end;
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
 
 
   

@@ -24,13 +24,7 @@ $('.btn__dashboard').click(function(){
   window.location.href ="./";
 });
 
-$(document).ready(function(){
-  $('.overview__wrapper').each(function(){
-    $(this).on('dblclick',function(){
-      console.log($(this));
-    });
-  });
-})
+
 
 
 
@@ -38,5 +32,3 @@ $(document).ready(function(){
 //fetch task on document load
 const tasks = new Tasks($('#email').html());
 tasks.getTasks();
-
-

@@ -24,6 +24,11 @@ class Tasks {
     {
         const taskOutput = `<div class="task-overview">
                                 <div class="overview__wrapper" id="overview__wrapper" style='background-color:${this.fourthParm};color:${this.fifthParam}'>
+                                    <div class='wrapper__action'>
+                                        <button class='btn btn-primary action__taskEdit'>Edit</button>
+                                        <button class='btn btn-secondary action__taskDone'>Done</button>
+                                        <button class='btn btn-danger action__taskDelete'>Delete</button>
+                                    </div>
                                     <div class="wrapper__taskName">
                                         <label class="taskName__content">${this.firstParam}</label>
                                     </div>
