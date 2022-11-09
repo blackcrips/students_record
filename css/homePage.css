@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #fff;
+    position: relative;
+  }
+
+  .container_body {
+    width: 100%;
+  }
+
+  .container-content {
+    margin-left: 0;
+    transition: all 1s ease-in-out;
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container-content.active {
+    margin-left: 220px;
+    transition: all 1s ease-in-out;
+  }
+
+  .container-content .records {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    white-space: nowrap;
+  }
+
+  .container-content .records div {
+    width: 18%;
+    height: 100px;
+    color: #fff;
+    
+  }
+
+  .container-content .records .records__stdntCount {
+    background-image: linear-gradient(to right,#FEB139,#fcbf5e);
+    display: flex;
+    border-radius: 5px;
+  }
+  
+  .container-content .records .records__stdntRglrCount {
+    background-image: linear-gradient(to right,#1B2430,#51557E);
+    display: flex;
+    border-radius: 5px;
+  }
+  
+  .container-content .records .records__stdntIrrglrCount {
+    background-image: linear-gradient(to right,#A10035,#FF7272);
+    display: flex;
+    border-radius: 5px;
+  }
+  
+  .container-content .records .records__taskCount {
+    background-image: linear-gradient(to right,#20c4ae,#00FFDD);
+    display: flex;
+    border-radius: 5px;
+  }
+
+  .records__label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    margin-left: 15px;
+    min-width: 50%;
+  }
+
+  .records__label span {
+    width: 100%;
+    font-family: "poppins";
+  }
+
+  .records__label #label1 {
+    font-size: 16px;
+  }
+  
+  .records__label #label2 {
+    font-size: 10px;
+    color: #858686;
+    line-height: 5px;
+  }
+
+  .records__count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    min-width: 50%;
+  }
+
+  .container-content .content__tasks {
+    width: 100%;
+    background-color: #eee;
+    margin-top: 10px;
+    min-height: 375px;
+    position: relative;
+  }
+
+  .content__tasks .tasks__contCreate {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    padding-top: 10px;
+  }
+
+  .content__tasks .tasks__contCreate a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .content__tasks .tasks__contCreate a i {
+    font-size: 16px;
+    font-weight: 800;
+    font-family: "Poppins";
+    transition:  all .5s ease-in-out;
+    caret-color: transparent;
+  }
+
+  .content__tasks .tasks__contCreate a:hover {
+    cursor: pointer;
+    color: rgb(97, 97, 97);
+  }
+
+
+  .container-content .content__tasks .tasks__show{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .container-footer {
+    width: 100%;
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+    font-size: 12px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    caret-color: transparent;
+}
+
+
+
+/* CSS FOR JSX */
+
+.task-message {
+  display: flex;
+  position: absolute;
+  left: 0;
+  top: 40px;
+  right: 0;
+  bottom: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  caret-color: transparent;
+}
+
+.task-overview {
+  max-width: 350px;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.task-overview .overview__wrapper:hover {
+  cursor: pointer;
+  width: 85%;
+  height: 315px;
+  transition: all .2s ease-in-out;
+}
+
+.task-overview .overview__wrapper{
+  width: 80%;
+  height: 300px;
+  padding: 10px;
+  box-shadow: 10px 10px 5px 0 #3e3e3e;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow-y: scroll;
+  transition: all .2s ease-in-out;
+}
+
+
+  

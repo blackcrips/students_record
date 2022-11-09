@@ -1,0 +1,89 @@
+.container-addTask .addTask__table {
+    display: flex;
+    width: 50%;
+}
+
+.container-addTask .addTask__table table{
+    min-width: 100%;
+}
+    
+.container-addTask table tbody tr td {
+    padding: 5px;
+}
+.container-addTask table tbody tr td label{
+    font-size: 22px;
+    font-weight: bold;
+}
+.container-addTask table tbody tr td input {
+    font-size: 18px;
+    padding: 5px;
+}
+.container-addTask table tbody tr td textarea {
+    height: 300px;
+    min-width: 100%;
+    padding: 5px;
+    font-size: 18px;
+}
+
+.container-addTask table tbody tr td div {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.container-addTask table tbody tr td div button {
+    margin-right: 5px;
+}
+
+.container-addTask {
+    display: flex;
+    min-width: 100%;
+}
+
+.container-addTask .task-overview {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 50px;
+}
+
+.container-addTask .task-overview .overview__wrapper{
+    width: 50%;
+    min-height: 210px;
+    max-height: 240px;
+    padding: 10px;
+    box-shadow: 10px 10px 5px 0 #3e3e3e;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.container-addTask .task-overview .overview__wrapper div{
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+.container-addTask .task-overview .overview__color {
+    margin-top: 10px;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-addTask .task-overview .overview__color label {
+    margin-right: 20px;
+}
+
+.container-addTask table tbody tr td .task-buttons {
+    position: relative;
+}
+
+#task-reminder{
+    color: red;
+    font-size: 12px;
+    letter-spacing: 1px;
+    position: absolute;
+    top: -10px;
+    left: 0;
+    font-weight: 700;
+}
