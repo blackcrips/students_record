@@ -193,7 +193,51 @@ class  Controller extends Model
         }
     }
 
+    public function getAddTask()
+    {
+        if(!isset($_POST['submitTask'])){
+            header("Location: ../");
+            exit();
+        }
 
+        if(!isset($_SESSION)){
+            session_start();
+        }
+
+        $taskName = htmlspecialchars($_POST['task-name']);
+        $taskTargetDate = htmlspecialchars($_POST['task-targetDate']);
+        $taskDescription = htmlspecialchars($_POST['task-description']);
+        $bgColor = htmlspecialchars($_POST['bgColor']);
+        $fColor = htmlspecialchars($_POST['fColor']);
+
+        $userId = $this->getUserId($_SESSION['login-details']['user-email']);
+
+        $this->addNewTask($taskName,$userId,$taskDescription,$bgColor,$fColor,$taskTargetDate);
+    }
+
+    public function editTask()
+    {
+        if(!isset($_POST['task-id'])){
+            header("LOCATION: ../");
+            exit();
+        }
+
+        if(!isset($_SESSION)){
+            session_start();
+        }
+
+        $taskName = htmlspecialchars($_POST['task-name']);
+        $taskTargetDate = htmlspecialchars($_POST['task-targetDate']);
+        $taskDescription = htmlspecialchars($_POST['task-description']);
+        $bgColor = htmlspecialchars($_POST['bgColor']);
+        $fColor = htmlspecialchars($_POST['fColor']);
+        $taskId = htmlspecialchars($_POST['task-id']);
+
+        $userId = $this->getUserId($_SESSION['login-details']['user-email']);
+
+        $this->editOldTask($taskName,$taskDescription,$bgColor,$fColor,$taskTargetDate,$taskId);
+
+    }
 
 
 
@@ -221,26 +265,4 @@ class  Controller extends Model
 
     }
 
-    public function getAddTask()
-    {
-        if(!isset($_POST['submitTask'])){
-            header("Location: ../");
-            exit();
-        }
-
-        if(!isset($_SESSION)){
-            session_start();
-        }
-
-        $taskName = htmlspecialchars($_POST['task-name']);
-        $taskTargetDate = htmlspecialchars($_POST['task-targetDate']);
-        $taskDescription = htmlspecialchars($_POST['task-description']);
-        $bgColor = htmlspecialchars($_POST['bgColor']);
-        $fColor = htmlspecialchars($_POST['fColor']);
-
-        $userId = $this->getUserId($_SESSION['login-details']['user-email']);
-
-        $this->addNewTask($taskName,$userId,$taskDescription,$bgColor,$fColor,$taskTargetDate);
-        
-    }
 }

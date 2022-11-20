@@ -25,10 +25,11 @@ $('.btn__dashboard').click(function(){
 });
 
 
-
-
-
-
-//fetch task on document load
+//fetch tasks on document load
 const tasks = new Tasks($('#email').html());
 tasks.getTasks();
+
+
+
+
+

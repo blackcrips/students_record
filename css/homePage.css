@@ -189,6 +189,14 @@
   transition: all .2s ease-in-out;
 }
 
+.task-overview .overview__wrapper:hover .wrapper__action{
+  display: flex;
+  position: inherit;
+  top: 0;
+  border-bottom: 1px dotted #ccc;
+  padding-bottom: 5px;
+}
+
 .task-overview .overview__wrapper{
   position: relative;
   width: 80%;
@@ -202,13 +210,34 @@
 }
 
 .task-overview .overview__wrapper .wrapper__action {
-  background-color: red;
   display: flex;
   justify-content: flex-end;
-  position: sticky;
-  top: 0;
+  position: absolute;
+  top: -25%;
   right: 0;
   left: 0;
+  transition: all .5s ease-in-out;
+}
+
+.task-overview .overview__wrapper .wrapper__action button{
+  padding: 5px;
+  margin-left: 5px;
+  font-size: .8rem;
+}
+
+.overlay_edit {
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  transition: 300ms ease-in-out;
+  justify-content: center;
+  align-items: center;
 }
 
 

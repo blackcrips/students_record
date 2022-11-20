@@ -18,9 +18,10 @@ $profileName = $view->getUserDetails();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/homePage.css">
     <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/editTask.css">
     <title>Personal student record</title>
 </head>
-<body>
+<body class='body'>
 <div class="side_nav">
             <div class="dashboard">
                 <button class="btn__dashboard">Dashboard</button>

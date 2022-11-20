@@ -64,7 +64,7 @@ class Model extends Dbh
     {
         $userId = $this->getUserId($email);
 
-        $sql = "SELECT task_name,content,target_date,bgColor,fColor FROM tasks WHERE user_id = ? AND status = 'active'";
+        $sql = "SELECT id,task_name,content,target_date,bgColor,fColor FROM tasks WHERE user_id = ? AND status = 'active'";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$userId]);
 
@@ -78,6 +78,22 @@ class Model extends Dbh
         
     }
 
+    protected function getSingleTask($taskId)
+    {
+        $sql = "SELECT id,task_name,content,target_date,bgColor,fColor FROM tasks WHERE id = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$taskId]);
+
+        
+        if($stmt->rowCount() == 0) {
+            return;
+        } else {
+            $result = $stmt->fetch();
+            exit(json_encode($result));
+        }
+        
+    }
+
     protected function addNewTask($taskName,$userId,$taskDescription,$bgColor,$fColor,$taskTargetDate)
     {
         $sql = "INSERT INTO tasks (`task_name`,`user_id`,`content`,`bgColor`,`fColor`,`target_date`,`status`) VALUES (?,?,?,?,?,?,?)";
@@ -86,6 +102,17 @@ class Model extends Dbh
         if(!$stmt->execute([$taskName,$userId,$taskDescription,$bgColor,$fColor,$taskTargetDate,'Active'])){
             echo "<script>alert('Error adding task')</script>";
             echo "<script>window.location.href = '../addNewTask.php'</script>";
+        }
+    }
+
+    protected function editOldTask($taskName,$taskDescription,$bgColor,$fColor,$taskTargetDate,$taskId)
+    {
+        $sql = "UPDATE tasks SET `task_name` = ?, `content` = ?, `bgColor` = ?, `fColor` = ?, `target_date` = ? WHERE `id` = ?";
+        $stmt = $this->connect()->prepare($sql);
+        
+        if(!$stmt->execute([$taskName,$taskDescription,$bgColor,$fColor,$taskTargetDate,$taskId])){
+            echo "<script>alert('Error updating task')</script>";
+            echo "<script>window.location.href = '../'</script>";
         }
     }
 }
