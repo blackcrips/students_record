@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2022 at 09:07 AM
+-- Generation Time: Nov 21, 2022 at 01:00 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -68,6 +68,7 @@ CREATE TABLE `tasks` (
   `fColor` varchar(50) NOT NULL,
   `target_date` date NOT NULL,
   `status` varchar(50) NOT NULL,
+  `finish_date` varchar(250) NOT NULL,
   `added_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -75,9 +76,10 @@ CREATE TABLE `tasks` (
 -- Dumping data for table `tasks`
 --
 
-INSERT INTO `tasks` (`id`, `task_name`, `user_id`, `content`, `bgColor`, `fColor`, `target_date`, `status`, `added_at`) VALUES
-(18, 'Task 1', '1', 'Task1 Description', '#080c72', '#fdfcfc', '2022-11-09', 'Active', '2022-11-09 15:06:42'),
-(19, 'task2', '1', 'akjfkadsfkadaklsdjf', '#ffffff', '#000000', '2022-11-09', 'Active', '2022-11-09 15:16:13');
+INSERT INTO `tasks` (`id`, `task_name`, `user_id`, `content`, `bgColor`, `fColor`, `target_date`, `status`, `finish_date`, `added_at`) VALUES
+(18, 'Task 1', '1', 'Task1 Description', '#080c72', '#fdfcfc', '2022-11-09', 'Active', 'Nov 21, 2022 07:55:45pm', '2022-11-09 15:06:42'),
+(21, 'Task 4', '1', 'Task 3 Description Edited', '#f2ea02', '#db0606', '2022-11-16', 'Active', 'Nov 21, 2022 07:52:29pm', '2022-11-20 20:53:04'),
+(22, 'Task 6', '1', 'Task 3 Description', '#f2ea02', '#db0606', '2022-11-16', 'Active', 'Nov 21, 2022 07:53:10pm', '2022-11-20 20:54:05');
 
 -- --------------------------------------------------------
 
@@ -146,7 +148,12 @@ INSERT INTO `user_action` (`id`, `username`, `device`, `ip_address`, `location`,
 (23, '', 'Desktop', '::1', 'private', '', '2022-11-09 14:10:06'),
 (24, '', 'Desktop', '::1', 'private', '', '2022-11-09 14:13:42'),
 (25, '', 'Desktop', '::1', 'private', '', '2022-11-09 14:15:18'),
-(26, '', 'Desktop', '::1', 'private', '', '2022-11-09 14:23:19');
+(26, '', 'Desktop', '::1', 'private', '', '2022-11-09 14:23:19'),
+(27, '', 'Desktop', '::1', 'private', '', '2022-11-20 15:37:50'),
+(28, '', 'Desktop', '::1', 'private', '', '2022-11-20 15:57:55'),
+(29, '', 'Desktop', '::1', 'private', '', '2022-11-20 16:36:37'),
+(30, '', 'Mobile', '::1', 'private', '', '2022-11-20 16:46:34'),
+(31, '', 'Desktop', '::1', 'private', '', '2022-11-21 18:33:15');
 
 -- --------------------------------------------------------
 
@@ -221,7 +228,7 @@ ALTER TABLE `students_personal_profile`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `user_accounts`
@@ -233,7 +240,7 @@ ALTER TABLE `user_accounts`
 -- AUTO_INCREMENT for table `user_action`
 --
 ALTER TABLE `user_action`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `user_details`
