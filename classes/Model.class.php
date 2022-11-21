@@ -94,6 +94,24 @@ class Model extends Dbh
         
     }
 
+    protected function validateTaskAction($taskId)
+    {
+        $sql = "SELECT user_id FROM tasks WHERE id = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$taskId]);
+
+        $userId = $stmt->fetch();
+
+        $sql = "SELECT email FROM user_details WHERE id = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$userId['user_id']]);
+
+        $result = $stmt->fetch();
+
+        return $result;
+        
+    }
+
     protected function addNewTask($taskName,$userId,$taskDescription,$bgColor,$fColor,$taskTargetDate)
     {
         $sql = "INSERT INTO tasks (`task_name`,`user_id`,`content`,`bgColor`,`fColor`,`target_date`,`status`) VALUES (?,?,?,?,?,?,?)";
@@ -115,4 +133,29 @@ class Model extends Dbh
             echo "<script>window.location.href = '../'</script>";
         }
     }
+
+    protected function finishTask($status,$finishDate,$taskId)
+    {
+        $sql = "UPDATE tasks SET `status` = ?, `finish_date` = ? WHERE `id` = ?";
+        $stmt = $this->connect()->prepare($sql);
+        
+        if(!$stmt->execute([$status,$finishDate,$taskId])){
+            echo "<script>alert('Error updating task')</script>";
+            echo "<script>window.location.href = '../'</script>";
+        }
+    }
+
+    protected function deleteTask($taskId)
+    {
+        $sql = "DELETE FROM tasks WHERE id = ?";
+        $stmt = $this->connect()->prepare($sql);
+        
+        if(!$stmt->execute([$taskId])){
+            echo "<script>alert('Error updating task')</script>";
+            echo "<script>window.location.href = '../'</script>";
+        }
+    }
+
+
+
 }

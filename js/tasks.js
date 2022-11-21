@@ -73,7 +73,7 @@ class Tasks {
                                             <td><div class="task-buttons">
                                                 <em><span id="task-reminder"></span></em>
                                                 <button type="submit" name="submit-edit" class="btn btn-primary" id="submit-edit">Submit</button>
-                                                <button type="button" class="btn btn-danger" id="task__back">Cancel</button>
+                                                <button type="button" class="btn btn-danger" id="edit__back">Cancel</button>
                                             </div></td>
                                         </tr>
                                     </tbody>
@@ -154,12 +154,39 @@ class Tasks {
                         }
 
                         let taskEdit = $('.action__taskEdit')
+                        let taskDone = $('.action__taskDone');
+                        let taskDelete = $('.action__taskDelete');
 
+                        // trigger when edit button clicked in homepage task
                             taskEdit.each(function(){
                                 $(this).click(function(){
                                     let taskId = $(this).parent().parent().parent().children('.task-id').val();
                                     const task = new Tasks(taskId);
                                     task.getTask(); 
+                                })
+                              });
+
+
+                              // triggered when 'done' button clicked in homepage task
+                              taskDone.each(function(){
+                                $(this).click(function(){
+                                    let taskId = $(this).parent().parent().parent().children('.task-id').val();
+                                    let taskAction = 'Done';
+                                    const task = new Tasks(taskId,taskAction);
+                                    task.finishTask(); 
+                                })
+                              });
+
+
+                              // Triggered when 'Delete' button clicked in homepage Task
+                              taskDelete.each(function(){
+                                $(this).click(function(){
+                                    if(confirm('Deleting this task cannot be undone? Continue?')){
+                                        let taskId = $(this).parent().parent().parent().children('.task-id').val();
+                                        let taskAction = 'Delete';
+                                        const task = new Tasks(taskId,taskAction);
+                                        task.finishTask(); 
+                                    }                                    
                                 })
                               });
                         
@@ -195,6 +222,7 @@ class Tasks {
                         const task = new Tasks(parseData.task_name,parseData.target_date,parseData.content,parseData.bgColor,parseData.fColor,parseData.id);
                         task.createTaskEdit();   
 
+                        //triggered when submit click in edit overview
                         $('#submit-edit').click(function(){
 
                             let taskName = $('#task-name');
@@ -205,6 +233,11 @@ class Tasks {
 
                             let task = new Tasks(taskName.val(),taskTargetDate.val(),taskDescription.val(),bgColor.val(),fColor.val(),parseData.id);
                             task.editTask();
+                        });
+
+                        // triggered when cancel button clicked in edit overview
+                        $('#edit__back').click(function(){
+                            window.location.href = './';
                         });
 
                         
@@ -264,7 +297,33 @@ class Tasks {
                 success: function(data)
                 {
                     alert('Task edit successfully!');
-                    // location.reload();
+                    location.reload();
+                }
+            }
+        );
+    }
+
+    finishTask()
+    {
+        $.ajax(
+            {
+                type: "POST",
+                url: "./includes/doneTask.inc.php",
+                data: {
+                    'task-id': this.firstParam,
+                    'task-action': this.secondParam
+                },
+                success: function(data)
+                {
+                    if(JSON.parse(data) == 'Deleted'){
+                        alert('Task deleted')
+                        location.reload();
+                    } else if(JSON.parse(data) == 'Edited'){
+                        alert('Good Job! Task Done!');
+                        location.reload();
+                    }
+                        
+                    
                 }
             }
         );

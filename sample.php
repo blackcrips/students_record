@@ -1,3 +1,14 @@
+<?php
+include_once('./includes/autoLoadClassesMain.inc.php');
+$controller = new Controller();
+var_dump($controller->taskValidation('admin@email.com',18));
+
+
+var_dump($_SESSION['login-details']['user-email']);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

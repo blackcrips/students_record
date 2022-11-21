@@ -233,11 +233,61 @@ class  Controller extends Model
         $fColor = htmlspecialchars($_POST['fColor']);
         $taskId = htmlspecialchars($_POST['task-id']);
 
-        $userId = $this->getUserId($_SESSION['login-details']['user-email']);
+        $userEmail = $_SESSION['login-details']['user-email'];
 
+        $this->taskValidation($userEmail,$taskId);
         $this->editOldTask($taskName,$taskDescription,$bgColor,$fColor,$taskTargetDate,$taskId);
 
     }
+
+
+    public function doneTask()
+    {
+        if(!isset($_POST['task-id'])){
+            header("LOCATION: ../");
+            exit();
+        }
+
+        if(!isset($_SESSION)){
+            session_start();
+        }
+
+        date_default_timezone_set('Asia/Manila');
+        $status = 'Done';
+        $finishDate = date('M d, Y h:i:sa');
+        $taskId = htmlspecialchars($_POST['task-id']);
+
+        $userEmail = $_SESSION['login-details']['user-email'];
+
+        $this->taskValidation($userEmail,$taskId);
+
+
+        if($_POST['task-action'] == 'Done'){
+            $this->finishTask($status,$finishDate,$taskId);
+            exit(json_encode('Edited'));
+        } else if($_POST['task-action'] == 'Delete'){
+            $this->deleteTask($taskId);
+            exit(json_encode('Deleted'));
+        }
+
+    }
+
+    public function taskValidation($userEmail,$taskId)
+    {
+
+        if(!isset($_SESSION)){
+            session_start();
+        }
+
+        $emailFromTaskId = $this->validateTaskAction($taskId);
+         
+        if($emailFromTaskId['email'] != $userEmail){
+            echo "<script>alert('Unable to process request!')</script>";
+            echo "<script>window.location.href = './'</script>";
+            die();
+
+        }
+    }   
 
 
 
