@@ -190,6 +190,8 @@ class  Controller extends Model
             return 'HOME DASHBOARD';
         } else if($arrayPageName[2] == "addNewTask.php"){
             return "ADD TASK";
+        }else if($arrayPageName[2] == "studentsList.php"){
+            return "Students List";
         }
     }
 

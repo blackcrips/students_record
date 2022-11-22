@@ -62,3 +62,5 @@ $profileName = $view->getUserDetails();
             </div>
         </div>
     <div class="container-content">
+
+    <script src="./js/header.js"></script>

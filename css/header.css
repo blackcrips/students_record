@@ -140,7 +140,7 @@
     flex-direction: column;
     position: absolute;
     top: 120px;
-    bottom: 19px;
+    bottom: 22px;
     left: -20%;
     background-color: #002B5B;
     width: 220px;
@@ -193,3 +193,15 @@
     outline: none;
   }
 
+
+  .container-footer {
+    width: 100%;
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+    font-size: 12px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    caret-color: transparent;
+    z-index: 2;
+}

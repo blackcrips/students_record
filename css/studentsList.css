@@ -1,0 +1,76 @@
+.container_stdList {
+    background-color: #fff;
+}
+
+.container_stdList .stdList__head {
+    
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px 5px 10px;
+}
+
+.container_stdList .stdList__head .head__options {
+    padding: 0 10px 0 10px;
+}
+
+.container_stdList .stdList__head .head__options select {
+    width: 150px;
+}
+
+.container_stdList .stdList__head .head__search input {
+    padding-left: 5px;
+}
+
+.container_stdList .stdList__head .head__search label:hover {
+    cursor: pointer;
+}
+
+.container_stdList .stdList__head .head__search label {
+    width: 100%;
+    text-align: end;
+    padding-right: 10px;
+    font-size: .8em;
+    font-style: italic;
+}
+
+.container_stdList .stdList__content {
+    background-color: #fff;
+    min-height: 70vh;
+}
+
+.container_stdList .stdList__content table {
+    min-width: 100%;
+}
+
+.container_stdList .stdList__content table thead th {
+    padding-left: 5px;
+    border: 1px solid #8d8b8b;
+    white-space: nowrap;
+}
+
+.container_stdList .stdList__content table tbody tr td:nth-child(1) {
+    text-align: center;
+}
+
+.container_stdList .stdList__content table tbody tr:hover {
+    /* background-color: #ccc; */
+    color: burlywood;
+    cursor: pointer;
+}
+
+.container_stdList .stdList__content table tbody tr td {
+    white-space: nowrap;
+    border: 1px solid #ccc;
+    padding-left: 5px;
+    padding-top: 5px;
+    font-size: 12px;
+}
+
+.container_stdList .stdList__content table tbody tr:nth-child(even){
+    background-color: #eee;
+}
+
+
+
+
+
