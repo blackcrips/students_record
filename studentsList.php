@@ -8,7 +8,7 @@
     <div class="stdList__head">
         <div class="head__options">
             <select name="options__section" id="options__section">
-                <option value="'--Select--">Select</option>
+                
             </select>
         </div>
         <div class="head__search">
@@ -31,61 +31,9 @@
                 <th>Section</th>
                 <th>School Year</th>
             </thead>
-            <tbody>
+            <tbody class='stdList_table'>
                 <tr>
-                    <td>1</td>
-                    <td>123465</td>
-                    <td>Jimmy</td>
-                    <td>Baruc</td>
-                    <td>Consulta</td>
-                    <td>Signal Village National High School</td>
-                    <td>IV</td>
-                    <td>Aster</td>
-                    <td>2004-2009</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>123465</td>
-                    <td>Jimmy</td>
-                    <td>Baruc</td>
-                    <td>Consulta</td>
-                    <td>Signal Village National High School</td>
-                    <td>IV</td>
-                    <td>Aster</td>
-                    <td>2004-2009</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>123465</td>
-                    <td>Jimmy</td>
-                    <td>Baruc</td>
-                    <td>Consulta</td>
-                    <td>Signal Village National High School</td>
-                    <td>IV</td>
-                    <td>Aster</td>
-                    <td>2004-2009</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>123465</td>
-                    <td>Jimmy</td>
-                    <td>Baruc</td>
-                    <td>Consulta</td>
-                    <td>Signal Village National High School</td>
-                    <td>IV</td>
-                    <td>Aster</td>
-                    <td>2004-2009</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>123465</td>
-                    <td>Jimmy</td>
-                    <td>Baruc</td>
-                    <td>Consulta</td>
-                    <td>Signal Village National High School</td>
-                    <td>IV</td>
-                    <td>Aster</td>
-                    <td>2004-2009</td>
+                    <td><?php $controller->loadSelectData(); ?></td>
                 </tr>
             </tbody>
         </table>

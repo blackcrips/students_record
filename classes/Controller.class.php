@@ -291,6 +291,13 @@ class  Controller extends Model
         }
     }   
 
+    // studentsList Controller starts here
+
+    public function loadSelectData()
+    {
+        return $this->getSelectData();
+    }
+
 
 
 

@@ -157,5 +157,30 @@ class Model extends Dbh
     }
 
 
+    // studentsList Model starts here
+
+    protected function getSelectData()
+    {
+        // $sql = "SELECT grade_level,section,course,school_year,student_id FROM students_school_profile";
+        // $sql = "SELECT grade_level,section,course,school_year,unique_section FROM students_school_profile ORDER BY grade_level";
+        // $sql = "SELECT unique_section FROM students_school_profile";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+
+        $results = $stmt->fetchAll();
+
+        // $uniqueArray = array_unique($results);
+        // echo "<pre>";
+        // var_dump($results);
+    }
+
+    protected function createUniqueSection($sample,$stdId)
+    {
+        $sql = "UPDATE students_school_profile SET `unique_section` = ? WHERE `student_id` = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$sample,$stdId]);
+    }
+
+
 
 }
