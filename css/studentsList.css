@@ -1,76 +1,315 @@
-.container_stdList {
-    background-color: #fff;
-}
-
-.container_stdList .stdList__head {
+* {
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+  }
+  
+  .container_stdList {
+      background-color: #fff;
+  }
+  
+  .container_stdList .stdList__head {
+      
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 10px 5px 10px;
+  }
+  
+  .container_stdList .stdList__head .head__options {
+      padding: 0 10px 0 10px;
+  }
+  
+  .container_stdList .stdList__head .head__options select {
+      width: 150px;
+  }
+  
+  .container_stdList .stdList__head .head__search {
+      text-align: end;
+  }
+  
+  .container_stdList .stdList__head .head__search input {
+      padding-left: 5px;
+  }
+  
+  .container_stdList .stdList__head .head__search .search__advance .advSearch__key:hover {
+      cursor: pointer;
+    color: #9CB4CC;
+  }
+  
+  .container_stdList .stdList__head .head__search .search__advance {
+      width: 100%;
+      position: relative;
+  }
+  
+  .container_stdList .stdList__head .head__search .search__advance .advSearch_hiddenDetails {
+      position: absolute;
+      top: 20px;
+      left: auto;
+      right: 0;
+      padding: 5px;
+      background-color: #ccc;
+      display: none;	
+      grid-template-columns: auto auto;
+      gap: 5px;
+      border-radius: 0 0 5px 5px;
+  }
+  
+  .container_stdList .stdList__head .head__search .search__advance .advSearch_hiddenDetails.active {
+      display: grid;
+      z-index: 4;
+  }
+  
+  .container_stdList .stdList__head .head__search .search__advance .advSearch_hiddenDetails .advSearch_content{
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+  }
+  
+  .container_stdList .stdList__head .head__search .search__advance .advSearch_hiddenDetails .advSearch_content input {
+      font-size: 14px;
+      padding: 3px 0 3px 5px;
+      
+      border: none;
+  }
+  
+  .container_stdList .stdList__head .head__search .search__advance .advSearch_hiddenDetails .advSearch_content input:focus {
+      outline-width: thin;
+      outline-style: solid;
+  }
+  
+  .container_stdList .stdList__head .head__search .search__advance .advSearch_hiddenDetails .advSearch_content.fr{
+      grid-column: 1/3;
+  }
+  
+  .advSearch__message {
+      text-align: center;
+      display: inline-block;
+      line-height: 50px;
+  }
+  
+  #advSearch__close {
+      max-width: 10%;
+      min-width: 10%;
+      align-self: flex-end;
+      background-color: transparent;
+      outline: none;
+      border: none;
+  }
+  
+  #advSearch__submit {
+      font-size: 14px;
+      font-weight: bold;
+      font-family: sans-serif;
+      padding: 5px;
+  }
+  
+  #advSearch__submit:hover,
+  #advSearch__close:hover {
+      cursor: pointer;
+  }
+  
+  .container_stdList .stdList__head .head__search .search__advance .advSearch__key {
+      text-align: end;
+      padding-right: 10px;
+      font-size: .8em;
+      font-style: italic;
+      margin-top: 5px;
+  }
+  
+  .container_stdList .stdList__content {
+      background-color: #fff;
+      min-height: 70vh;
+  }
+  
+  .container_stdList .stdList__content table {
+      min-width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .container_stdList .stdList__content table thead th {
+      padding-left: 5px;
+      border: 1px solid #8d8b8b;
+      white-space: nowrap;
+      background-color: #fff;
+      padding-top: 4px;
+  }
+  
+  .container_stdList .stdList__content table thead {
+      position: static;
+      font-size: 16px;
+  }
+  
+  .container_stdList .stdList__content table thead.active {
+      position: sticky;
+      top: -2px;
+      left: 0;
+      right: 0;
+      font-size: 20px;
+      padding: 12px;	
+  }
+  
+  .container_stdList .stdList__content table tbody tr td:nth-child(1) {
+      text-align: center;
+  }
+  
+  .container_stdList .stdList__content table tbody tr:hover {
+      cursor: pointer;
+    background-image: linear-gradient(#d3cedf,#9CB4CC);
+    color: #fff;
+  }
+  
+  .container_stdList .stdList__content table tbody tr td {
+      white-space: nowrap;
+      border: 1px solid #ccc;
+      padding-left: 5px;
+      padding-top: 5px;
+      font-size: 12px;
+  }
+  
+  .container_stdList .stdList__content table tbody tr:nth-child(even){
+      background-color: #eee;
+  }
+  
+  .std__overlay{
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left:0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 300ms ease-in-out;
+    opacity: 0;
+    pointer-events: none;
     
+  }
+  
+  .std__overlay.active {
+      pointer-events: all;
+      opacity: 1;
+  }
+  
+  .stdIndividual_infoContainer {
+    position: fixed;
+    width: 50%;
+    background-color: #f3f3f3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 300ms ease-in-out;
+    border-radius: 20px;
+    padding: 10px;
+    z-index: 5;
+    flex-direction: column;
+  }
+  
+  .stdIndividual_infoContainer.active {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  .stdIndividual_info {
     display: flex;
-    justify-content: space-between;
-    padding: 5px 10px 5px 10px;
-}
-
-.container_stdList .stdList__head .head__options {
-    padding: 0 10px 0 10px;
-}
-
-.container_stdList .stdList__head .head__options select {
-    width: 150px;
-}
-
-.container_stdList .stdList__head .head__search input {
-    padding-left: 5px;
-}
-
-.container_stdList .stdList__head .head__search label:hover {
-    cursor: pointer;
-}
-
-.container_stdList .stdList__head .head__search label {
+    flex-direction: column;
+  }
+  
+  .stdIndividual_info .stdIndividual_top {
+    display: flex;
     width: 100%;
-    text-align: end;
-    padding-right: 10px;
-    font-size: .8em;
-    font-style: italic;
-}
-
-.container_stdList .stdList__content {
-    background-color: #fff;
-    min-height: 70vh;
-}
-
-.container_stdList .stdList__content table {
-    min-width: 100%;
-}
-
-.container_stdList .stdList__content table thead th {
-    padding-left: 5px;
-    border: 1px solid #8d8b8b;
-    white-space: nowrap;
-}
-
-.container_stdList .stdList__content table tbody tr td:nth-child(1) {
-    text-align: center;
-}
-
-.container_stdList .stdList__content table tbody tr:hover {
-    /* background-color: #ccc; */
-    color: burlywood;
-    cursor: pointer;
-}
-
-.container_stdList .stdList__content table tbody tr td {
-    white-space: nowrap;
+    max-height: 40%;
+  }
+  
+  .stdIndividual_info .stdIndividual_top .stdIndivual__topLeft {
+      display: flex;
+      width: 60%;
+      height: 100%;
+  }
+  
+  .stdIndividual_info .stdIndividual_top .stdIndivual__topLeft .topLeft__container {
+      display: flex;
+      flex-direction: column;
+    width: 100%;
+    height: 20%;
+    margin-top: 10px;
+  }
+  
+  
+  
+  
+  
+  
+  .stdIndividual_info .stdIndividual_top .stdIndivual__topRight {
+      width: 40%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  .stdIndividual_info .stdIndividual_top .stdIndivual__topRight img {
+      height: auto;
+      max-width: 100%;
+  }
+  
+  .stdIndividual_info .stdIndividual_bottom {
+    margin-top: 10px;
     border: 1px solid #ccc;
-    padding-left: 5px;
-    padding-top: 5px;
-    font-size: 12px;
-}
+    width: 100%;
+    display: flex;
+    padding: 10px 5px 5px 5px;
+  }
+  
+  .stdIndividual_info .stdIndividual_bottom .personalDetails-container {
+      width: 45%;
+  }
+  
+  .stdIndividual_info .stdIndividual_bottom .personalDetails-container table {
+      width: 100%;
+  }
+  
+  .stdIndividual_info tr td {
+      border-bottom: 1px solid #ccc;
+  }
+  
+  .stdIndividual_info .stdIndividual_bottom .stdIndividual__schoolRecord {
+      min-width: 50%;
+      min-height: 100px;
+      margin-left: 15px;
+  }
+  
+  .stdIndividual_info .stdIndividual_bottom .stdIndividual__schoolRecord table {
+      width: 100%;
+  }
+  
+  .stdIndividual_infoContainer .stdIndividual_nextPage {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      margin-top: 5px;
+  }
+  
+   .stdIndividual_nextPage .std_previous,
+   .stdIndividual_nextPage .std_next {
+       padding: 5px;
+  }
+  
+  .stdIndividual_infoContainer .stdIndividual_nextPage button {
+      background-color: transparent;
+      outline: none;
+      border: none;
+      font-size: 16px;
+      color: #3e3e3e;
+  }
+  
+  .stdIndividual_infoContainer .stdIndividual_nextPage #stdIndividual__previous:hover,
+  .stdIndividual_infoContainer .stdIndividual_nextPage #stdIndividual__next:hover {
+      color: #000;
+      cursor: pointer;
+  }
 
-.container_stdList .stdList__content table tbody tr:nth-child(even){
-    background-color: #eee;
-}
-
-
-
-
-
+  .dataTables_length,
+  .dataTables_filter {
+    max-width: 50%;
+  }
+  
+  

@@ -159,19 +159,18 @@ class Model extends Dbh
 
     // studentsList Model starts here
 
-    protected function getSelectData()
+    protected function getAllStudentsData()
     {
-        // $sql = "SELECT grade_level,section,course,school_year,student_id FROM students_school_profile";
-        // $sql = "SELECT grade_level,section,course,school_year,unique_section FROM students_school_profile ORDER BY grade_level";
-        // $sql = "SELECT unique_section FROM students_school_profile";
+        $sql = "SELECT firstname,middlename,lastname,gender,scf.student_id,scf.school,scf.section,scf.grade_level,scf.school_year
+        FROM students_personal_profile spp
+        JOIN students_school_profile scf
+        ON spp.id = scf.id ORDER BY lastname";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
 
         $results = $stmt->fetchAll();
 
-        // $uniqueArray = array_unique($results);
-        // echo "<pre>";
-        // var_dump($results);
+        exit(json_encode($results));
     }
 
     protected function createUniqueSection($sample,$stdId)

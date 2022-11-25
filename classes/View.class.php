@@ -29,4 +29,11 @@ class  View extends Model
 
         return $this->getSingleTask($taskId);
     }
+
+    public function getAllStudents()
+    {
+        return $this->getAllStudentsData();
+    }
+
+    
 }
