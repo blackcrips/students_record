@@ -1,6 +1,20 @@
-let students = new Students(1);
-students.loadData();
 
+// let selectedStudentList = new Students();
+// selectedStudentList.selectStudentList();
+
+function studentOnload()
+{
+	let students = new Students();
+	students.loadData();
+	students.dropdownList();
+}
+
+studentOnload();
+
+$('#options__section').change(function(){
+	let students = new Students($(this).val());
+	students.selectStudentList();
+});
 
 function update(){
     let focusPosition = document.getElementById('std__infoThead');
@@ -94,13 +108,5 @@ function removeAndChangeColor()
 		
 	});
 }
-
-
-
-let multipleArray = ['apple','apple','Banana','Mango'];
-
-let uniqueValue = new Set(multipleArray);
-
-console.log(uniqueValue);
 
 

@@ -21,17 +21,20 @@ class Students {
                 <div class='topLeft__container'>
                     <label>Full name:  <span>${this.firstParam.firstname + " " + this.firstParam.middlename + " " + this.firstParam.lastname}</span></label>
                 </div>
-            <div class='topLeft__container'>
-                    <label>Contact no:  <span>09276469661</span></label>
+                <div class='topLeft__container'>
+                    <label>Gender:  <span>${this.firstParam.gender}</span></label>
                 </div>
                 <div class='topLeft__container'>
-                    <label>Birthday:  <span>February 29, 1992</span></label>
-                </div>
-            <div class='topLeft__container'>
-                    <label>Email:  <span>jimmyconsulta@yahoo.com</span></label>
+                    <label>Contact no:  <span>${this.firstParam.contact_no}</span></label>
                 </div>
                 <div class='topLeft__container'>
-                    <label>Address:  <span>110 4th St. GHQ Brgy. Katuparan Taguig</span></label>
+                    <label>Birthday:  <span>${this.firstParam.birthday}</span></label>
+                </div>
+            <div class='topLeft__container'>
+                    <label>Email:  <span>${this.firstParam.email}</span></label>
+                </div>
+                <div class='topLeft__container'>
+                    <label>Address:  <span>${this.firstParam.address}</span></label>
                 </div>
                 </div>
                 </div>
@@ -65,20 +68,29 @@ class Students {
                     </table>
                 </div>
             </div>
-        </div>
-            <div class='stdIndividual_nextPage'>
-                <div class='std_previous'>
-                    <div class='previous__animation'></div>
-                    <button id='stdIndividual__previous'>Previous</button>
-                </div>
-                <div class='std_next'>
-                    <div class='next__animation'></div>
-                    <button id='stdIndividual__next'>Next</button>
+                <div class='stdIndividual_nextPage'>
+                    <div class='std_previous'>
+                        <div class='previous__animation'></div>
+                        <button id='stdIndividual__previous'>Previous</button>
+                    </div>
+                    <div class='std_next'>
+                        <div class='next__animation'></div>
+                        <button id='stdIndividual__next'>Next</button>
+                    </div>
                 </div>
             </div>
         </div>`;
 
-        $('.stdIndividual_infoContainer').append(stdInformation);
+        let students = new Students(this.firstParam.student_id);
+
+        if($('.stdIndividual_info').length > 0){
+            $('.stdIndividual_info').remove();
+            $('.stdIndividual_infoContainer').append(stdInformation);
+        } else {
+            $('.stdIndividual_infoContainer').append(stdInformation);
+            students.dynamicSchoolRecord();
+        }
+
     }
 
 
@@ -95,40 +107,48 @@ class Students {
             success: function(data){
                 let studentList = JSON.parse(data);
 
-                $(document).ready(function(){
-                    for(let i = 0; i < studentList.length; i++){
-                        let trTemplate = `<tr class='std__ListData'><td>${i + 1}</td><td class='std-id'>${studentList[i].student_id}</td><td>${studentList[i].firstname}</td><td>${studentList[i].middlename}</td><td>${studentList[i].lastname}</td><td>${studentList[i].gender}</td><td>${studentList[i].school}</td><td>${studentList[i].grade_level}</td><td>${studentList[i].section}</td><td>${studentList[i].school_year}</td></tr>`;
-                        
-                        $('#std__table').append(trTemplate);
-                    };
+                let students = new Students(studentList);
 
-                    $("#example").DataTable({
-                        'iDisplayLength': 100,
-                        'fnDrawCallback': function()
-                        {
-                            $('.std__ListData').dblclick(function(){
-                                alert('You are tapping too fast!');
-                                
-                                $('.std__overlay').removeClass('active');
-                                $('.stdIndividual_infoContainer').removeClass('active');
-                                $('#body').css('overflow','scroll');
-                                $('.stdIndividual_infoContainer').children().remove();
-                            });
-                            
-                            
-                            $('.std__ListData').click(function(){
-                                $('.std__overlay').addClass('active');
-                                $('.stdIndividual_infoContainer').addClass('active');
-                                $('#body').css('overflow','hidden');
-                                
-                                let stdId = $(this).children('.std-id').html();
-                                let students = new Students(stdId,studentList);
-                                students.getStudentData();
-                                students.onClickOverlay();
-                                
-                            });
-                        }
-                    });
+                $(document).ready(function(){
+                    students.loadDataTable();
+                });
+            }
+        });
+    }
+
+    loadDataTable()
+    {
+        let studentLists = this.firstParam;
+        for(let i = 0; i < studentLists.length; i++){
+            let trTemplate = `<tr class='std__ListData'><td hidden>${i + 1}</td><td>${studentLists[i].lastname}</td><td>${studentLists[i].firstname}</td><td>${studentLists[i].middlename}</td><td class='std-id'>${studentLists[i].student_id}</td><td>${studentLists[i].gender}</td><td>${studentLists[i].school}</td><td>${studentLists[i].grade_level}</td><td>${studentLists[i].section}</td><td>${studentLists[i].school_year}</td></tr>`;
+            
+            $('#std__table').append(trTemplate);
+        };
+
+        $("#example").DataTable({
+            'iDisplayLength': 50,
+            'lengthMenu': [20,50,100,200],
+            'fnDrawCallback': function()
+            {
+                $('.std__ListData').dblclick(function(){
+                    alert('You are tapping too fast!');
+                    
+                    $('.std__overlay').removeClass('active');
+                    $('.stdIndividual_infoContainer').removeClass('active');
+                    $('#body').css('overflow','scroll');
+                    $('.stdIndividual_infoContainer').children().remove();
+                });
+                
+                
+                $('.std__ListData').click(function(){
+                    $('.std__overlay').addClass('active');
+                    $('.stdIndividual_infoContainer').addClass('active');
+                    $('.body').css('overflow','hidden');
+                    
+                    let stdId = $(this).children('.std-id').html();
+                    let students = new Students(stdId,studentLists);
+                    students.getStudentData();
+                    students.onClickOverlay();
                 });
             }
         });
@@ -152,10 +172,15 @@ class Students {
         students.individualRecordView();
         students.stdIndividualNext();
         students.stdIndividualPrevious();
+
+ 
     }
 
     stdIndividualNext()
     {
+        console.log(this.firstParam);
+        console.log(this.secondParam);
+        console.log(this.thirdParam);
         let wholeArray = this.thirdParam;
         let indexIncrement = this.secondParam + 1;
         
@@ -214,22 +239,92 @@ class Students {
 
     dynamicSchoolRecord()
     {
-        for(let i = 1; i <= arrayCount; i++){
-            let scRecord = `<tr>
-                                <td>Grade Level:</td>
-                                <td>IV</td>
-                            </tr>
-                            <tr>
-                                <td>Section:</td>
-                                <td>Meryn</td>
-                            </tr>
-                            <tr>
-                                <td>School Year:</td>
-                                <td>2004-2009</td>
-                            </tr>`;
-                            
-                $('#scRecord__table').append(scRecord);
-        }
+        $.ajax({
+            url: './includes/getSchoolRecord.inc.php',
+            method: 'POST',
+            data: {
+                request_status: 'schoolRecord',
+                student_id: this.firstParam
+            },
+            success: function(data){
+                let schoolRecord = JSON.parse(data);
+                let arrayCount = schoolRecord.length;
+
+                for(let i = 0; i < arrayCount; i++){
+                        let scRecord = `<tr>
+                                            <td>School:</td>
+                                            <td>${schoolRecord[i].school}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Grade level:</td>
+                                            <td>${schoolRecord[i].grade_level}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Course:</td>
+                                            <td>${schoolRecord[i].course}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Section:</td>
+                                            <td>${schoolRecord[i].section}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>School year:</td>
+                                            <td>${schoolRecord[i].school_year}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan='2'>
+                                                <div class='schoolRecord__increment'></div>
+                                            </td>
+                                        </tr>`;
+                                        
+                            $('#scRecord__table').append(scRecord);
+                    }
+            }
+        });        
+    }
+
+    selectStudentList()
+    {
+        $.ajax({
+            url: './includes/selectStudentList.inc.php',
+            method: "POST",
+            data: {
+                request_status: this.firstParam
+            },
+            success: function(data){
+                let studentList = JSON.parse(data);
+                
+                $('#example').dataTable().fnDestroy();
+                $('#std__table').children().remove();
+                
+                let students = new Students(studentList);
+
+                $(document).ready(function(){
+                    students.loadDataTable();
+                });
+
+            }
+        });
+    }
+
+    dropdownList()
+    {
+        $.ajax({
+            url: './includes/studentDropdown.inc.php',
+            method: 'POST',
+            data: {
+                request_status: 'section'
+            },
+            success: function(data){
+                let optionStudent = JSON.parse(data);
+                let uniqueData = new Set(optionStudent);
+                
+                uniqueData.forEach(function(value){
+                    let dropdownTemplate = `<option value='${value}'>${value}</option>`;
+                    $('#options__section').append(dropdownTemplate);
+                });
+            }
+        });
     }
 
 

@@ -7,7 +7,7 @@
                         <span id="label2">Overall student count</span>
                     </div>
                     <div class="records__count">
-                        <span id="stdntCounts">12465</span>
+                        <span id="stdntCounts"><?php echo $view->getStudentCount()['studentCount'] ?></span>
                     </div>
                 </div>
                 <div class="records__stdntRglrCount">
@@ -51,6 +51,11 @@
 
                 </div>
             </div>
+
+    
+    <script src="./js/tasks.js"></script>
+    <script src="./js/homePage.js"></script>
+    
         
 
         <?php include('footer.php'); ?>

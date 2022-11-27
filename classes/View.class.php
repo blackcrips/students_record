@@ -2,6 +2,11 @@
 
 class  View extends Model
 {
+    public function getStudentCount()
+    {
+        return $this->studentCount();
+    }
+
     public function getUserDetails()
     {
         $email = $_SESSION['login-details']['user-email'];
@@ -32,8 +37,35 @@ class  View extends Model
 
     public function getAllStudents()
     {
+        if(!isset($_POST['request_status'])){
+            header('LOCATION: ../');
+            exit();
+        }
         return $this->getAllStudentsData();
     }
 
+    public function getSchoolRecord()
+    {
+        if(!isset($_POST['request_status'])){
+            header("LOCATION: ../");
+            exit();
+        }
+
+        $stdId = htmlspecialchars($_POST['student_id']);
+
+        return $this->schoolRecord($stdId);
+    }
+
+    public function viewBySelectValue()
+    {
+        if(!isset($_POST['request_status'])){
+            header("LOCATION: ../status403.php");
+            exit();
+        }
+
+        $selectValue = htmlspecialchars($_POST['request_status']);
+
+        return $this->listBySelectValue($selectValue);
+    }
     
 }

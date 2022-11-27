@@ -5,11 +5,12 @@
 <link rel="stylesheet" href="./css/studentsList.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 
+
 <div class="container_stdList">
     <div class="stdList__head">
         <div class="head__options">
             <select name="options__section" id="options__section">
-                <option value="'--Select--">Select</option>
+                <option value="">--Select--</option>
             </select>
         </div>
         <div class="head__search">
@@ -66,11 +67,11 @@
         <table class="content__info display" id="example">
             <thead id='std__infoThead'>
                 <tr>
-                    <th class='std__no'>Count</th>
-                    <th>Student ID</th>
+                    <th class='std__no' hidden>Count</th>
+                    <th>Lastname</th>
                     <th>Firstname</th>
                     <th>Middlename</th>
-                    <th>Lastname</th>
+                    <th>Student ID</th>
                     <th>Gender</th>
                     <th>School</th>
                     <th>Grade Level</th>

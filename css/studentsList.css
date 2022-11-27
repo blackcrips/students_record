@@ -203,6 +203,7 @@
     padding: 10px;
     z-index: 5;
     flex-direction: column;
+    min-height: 80vh;
   }
   
   .stdIndividual_infoContainer.active {
@@ -279,8 +280,12 @@
   
   .stdIndividual_info .stdIndividual_bottom .stdIndividual__schoolRecord table {
       width: 100%;
-  }
-  
+}
+.stdIndividual_info .stdIndividual_bottom .stdIndividual__schoolRecord table tr td .schoolRecord__increment {
+    border: 1px solid black;
+}
+
+    
   .stdIndividual_infoContainer .stdIndividual_nextPage {
       display: flex;
       width: 100%;
@@ -310,6 +315,13 @@
   .dataTables_length,
   .dataTables_filter {
     max-width: 50%;
+  }
+
+
+  @media only screen and (max-width: 900px) {
+    .stdIndividual_infoContainer.active {
+        width: 80%;
+    }
   }
   
   

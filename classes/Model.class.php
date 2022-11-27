@@ -3,6 +3,19 @@
 
 class Model extends Dbh
 {
+    protected function studentCount()
+    {
+        $sql = "SELECT count(id) AS studentCount FROM students_personal_profile";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+
+        $results = $stmt->fetch();
+
+        return $results;
+
+
+    }
+
     protected function validLogin($username,$password)
     {
         $sql = "SELECT * FROM user_accounts WHERE username = ?";
@@ -161,7 +174,7 @@ class Model extends Dbh
 
     protected function getAllStudentsData()
     {
-        $sql = "SELECT firstname,middlename,lastname,gender,scf.student_id,scf.school,scf.section,scf.grade_level,scf.school_year
+        $sql = "SELECT firstname,middlename,lastname,gender,scf.student_id,scf.school,scf.section,scf.grade_level,scf.school_year,contact_no,birthday,email,address
         FROM students_personal_profile spp
         JOIN students_school_profile scf
         ON spp.id = scf.id ORDER BY lastname";
@@ -179,6 +192,53 @@ class Model extends Dbh
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$sample,$stdId]);
     }
+
+    protected function schoolRecord($stdId)
+    {
+        $sql = "SELECT id,school,grade_level,section,course,school_year FROM students_school_profile WHERE student_id = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$stdId]);
+
+        $results = $stmt->fetchAll();
+        $arrayTemplate = [];
+
+        foreach($results as $result){
+            array_push($arrayTemplate,$result);
+        }
+        exit(json_encode($results));
+    }
+
+    protected function getSectionList()
+    {
+        $sql = "SELECT section FROM students_school_profile ORDER BY section";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+
+        $results = $stmt->fetchAll();
+        
+        $emptyArray = [];
+
+        foreach($results as $result){
+            array_push($emptyArray,$result['section']);
+        }
+
+        exit(json_encode($emptyArray));
+    }
+
+    protected function listBySelectValue($selectValue)
+    {
+        $sql = "SELECT firstname,middlename,lastname,gender,scf.student_id,scf.school,scf.section,scf.grade_level,scf.school_year,contact_no,birthday,email,address
+        FROM students_personal_profile spp
+        JOIN students_school_profile scf
+        ON spp.id = scf.id WHERE scf.section = ? ORDER BY lastname";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$selectValue]);
+
+        $results = $stmt->fetchAll();
+
+        exit(json_encode($results));
+    }
+
 
 
 

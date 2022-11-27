@@ -293,7 +293,19 @@ class  Controller extends Model
 
     // studentsList Controller starts here
 
+    public function sectionList()
+    {
+        if(!isset($_POST['request_status'])){
+            header("LOCATION: ../status403.php");
+            exit();
+        }
+
+        return $this->getSectionList();
+    }
+
     
+
+
 
 
 
