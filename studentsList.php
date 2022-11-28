@@ -10,7 +10,8 @@
     <div class="stdList__head">
         <div class="head__options">
             <select name="options__section" id="options__section">
-                <option value="">--Select--</option>
+                <option>--Select--</option>
+                <option value="All">All</option>
             </select>
         </div>
         <div class="head__search">

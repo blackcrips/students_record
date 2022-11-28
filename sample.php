@@ -1,111 +1,128 @@
-<?php
-include_once('./includes/autoLoadClassesMain.inc.php');
-$controller = new Controller();
-var_dump($controller->taskValidation('admin@email.com',18));
-
-
-var_dump($_SESSION['login-details']['user-email']);
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/sample.css" class="rel">
     <title>Document</title>
 </head>
-
-<style>
-
- .task-overview {
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding-bottom: 50px;
-}
-
-.task-overview .overview__wrapper{
-    width: 50%;
-    min-height: 210px;
-    max-height: 210px;
-    padding: 10px;
-    box-shadow: 10px 10px 5px 0 #3e3e3e;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-</style>
-
 <body>
-    <div class="stdIndividual_info">
-        <div class="stdIndividual_top">
-            <div class="stdIndivual__topLeft">
-                <div class='topLeft__container'>
-                    <label>Student Number:  <span>${this.firstParam.student_id}</span></label>
-                <div class='topLeft__container'>
-                    <label>Full name:  <span>${this.firstParam.firstname + " " + this.firstParam.middlename + " " + this.firstParam.lastname}</span></label>
-                </div>
-                <div class='topLeft__container'>
-                    <label>Contact no:  <span>09276469661</span></label>
-                </div>
-                <div class='topLeft__container'>
-                    <label>Birthday:  <span>February 29, 1992</span></label>
-                </div>
-                <div class='topLeft__container'>
-                    <label>Email:  <span>jimmyconsulta@yahoo.com</span></label>
-                </div>
-            <div class='topLeft__container'>
-                <label>Address:  <span>110 4th St. GHQ Brgy. Katuparan Taguig</span></label>
+<div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Bootstrap Sidebar</h3>
             </div>
-            </div>
-            </div>
-            <div class="stdIndivual__topRight">
-                <img src="data:image/jpeg;base64,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" alt="Profile">
-            </div>
+
+            <ul class="list-unstyled components">
+                <p>Dummy Heading</p>
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="#">Home 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Home 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Home 3</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="#">Page 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 3</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Portfolio</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+
+            <ul class="list-unstyled CTAs">
+                <li>
+                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+                </li>
+                <li>
+                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Toggle Sidebar</span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <h2>Collapsible Sidebar Using Bootstrap 4</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            <div class="line"></div>
+
+            <h2>Lorem Ipsum Dolor</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            <div class="line"></div>
+
+            <h2>Lorem Ipsum Dolor</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            <div class="line"></div>
+
+            <h3>Lorem Ipsum Dolor</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
-        <div class="stdIndividual_bottom">
-            <div class='personalDetails-container'>
-                <table>
-                    <tr>
-                        <td>Guardian name: </td>
-                        <td>Maria Leonora</td>
-                    </tr>
-                    <tr>
-                        <td>Contact No.: </td>
-                        <td>987654321</td>
-                    </tr>
-                    <tr>
-                        <td>Emergency contact: </td>
-                        <td>Teresa</td>
-                    </tr>
-                    <tr>
-                        <td>Contact No.: </td>
-                        <td>987654321</td>
-                    </tr>
-                </table>
-            </div>
-            <div class='stdIndividual__schoolRecord'>
-                <table id='scRecord__table'>
-                </table>
-            </div>
-        
     </div>
-        <div class='stdIndividual_nextPage'>
-            <div class='std_previous'>
-                <div class='previous__animation'></div>
-                <button id='stdIndividual__previous'>Previous</button>
-            </div>
-            <div class='std_next'>
-                <div class='next__animation'></div>
-                <button id='stdIndividual__next'>Next</button>
-            </div>
-        </div>
-    </div>
-    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./js/sample.js"></script>
 </body>
 </html>

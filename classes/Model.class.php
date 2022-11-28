@@ -174,7 +174,7 @@ class Model extends Dbh
 
     protected function getAllStudentsData()
     {
-        $sql = "SELECT firstname,middlename,lastname,gender,scf.student_id,scf.school,scf.section,scf.grade_level,scf.school_year,contact_no,birthday,email,address
+        $sql = "SELECT firstname,middlename,lastname,gender,scf.student_id,scf.school,scf.section,scf.grade_level,scf.school_year,contact_no,birthday,email,address,spp.guardian_name,spp.guardian_no,spp.emergency_contact,spp.emergency_cont_no
         FROM students_personal_profile spp
         JOIN students_school_profile scf
         ON spp.id = scf.id ORDER BY lastname";
@@ -227,7 +227,7 @@ class Model extends Dbh
 
     protected function listBySelectValue($selectValue)
     {
-        $sql = "SELECT firstname,middlename,lastname,gender,scf.student_id,scf.school,scf.section,scf.grade_level,scf.school_year,contact_no,birthday,email,address
+        $sql = "SELECT firstname,middlename,lastname,gender,scf.student_id,scf.school,scf.section,scf.grade_level,scf.school_year,contact_no,birthday,email,address,spp.guardian_name,spp.guardian_no,spp.emergency_contact,spp.emergency_cont_no
         FROM students_personal_profile spp
         JOIN students_school_profile scf
         ON spp.id = scf.id WHERE scf.section = ? ORDER BY lastname";

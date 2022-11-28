@@ -291,6 +291,9 @@
       width: 100%;
       justify-content: center;
       margin-top: 5px;
+      position: absolute;
+      bottom: 0;
+      margin-bottom: 20px;
   }
   
    .stdIndividual_nextPage .std_previous,
@@ -302,14 +305,15 @@
       background-color: transparent;
       outline: none;
       border: none;
-      font-size: 16px;
+      font-size: 20px;
       color: #3e3e3e;
   }
   
   .stdIndividual_infoContainer .stdIndividual_nextPage #stdIndividual__previous:hover,
   .stdIndividual_infoContainer .stdIndividual_nextPage #stdIndividual__next:hover {
-      color: #000;
+      font-weight: bold;
       cursor: pointer;
+
   }
 
   .dataTables_length,

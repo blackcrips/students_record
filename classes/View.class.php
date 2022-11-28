@@ -65,7 +65,11 @@ class  View extends Model
 
         $selectValue = htmlspecialchars($_POST['request_status']);
 
-        return $this->listBySelectValue($selectValue);
+        if(strtolower($selectValue) == "all"){
+            return $this->getAllStudentsData();
+        } else {
+            return $this->listBySelectValue($selectValue);
+        }        
     }
     
 }

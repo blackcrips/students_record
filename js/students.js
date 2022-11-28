@@ -19,7 +19,7 @@ class Students {
                 <div class='topLeft__container'>
                     <label>Student Number:  <span>${this.firstParam.student_id}</span></label>
                 <div class='topLeft__container'>
-                    <label>Full name:  <span>${this.firstParam.firstname + " " + this.firstParam.middlename + " " + this.firstParam.lastname}</span></label>
+                    <label>Full name:  <span>${this.firstParam.lastname + ", " + this.firstParam.firstname + " " + this.firstParam.middlename}</span></label>
                 </div>
                 <div class='topLeft__container'>
                     <label>Gender:  <span>${this.firstParam.gender}</span></label>
@@ -47,19 +47,19 @@ class Students {
                     <table>
                         <tr>
                             <td>Guardian name: </td>
-                            <td>Maria Leonora</td>
+                            <td>${this.firstParam.guardian_name}</td>
                         </tr>
                         <tr>
                             <td>Contact No.: </td>
-                            <td>987654321</td>
+                            <td>${this.firstParam.guardian_no}</td>
                         </tr>
                         <tr>
                             <td>Emergency contact: </td>
-                            <td>Teresa</td>
+                            <td>${this.firstParam.emergency_contact}</td>
                         </tr>
                         <tr>
                             <td>Contact No.: </td>
-                            <td>987654321</td>
+                            <td>${this.firstParam.emergency_cont_no}</td>
                         </tr>
                     </table>
                 </div>
