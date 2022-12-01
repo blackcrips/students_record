@@ -16,28 +16,46 @@ $profileName = $view->getUserDetails();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,600,1,0" />
     <link rel="stylesheet" href="./css/homePage.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/editTask.css">
     <title>Personal student record</title>
 </head>
 <body class='body'>
-<div class="side_nav">
-            <div class="dashboard">
-                <button class="btn__dashboard">Dashboard</button>
-            </div>
-            <div class="student_list">
-                <button class="btn__student_list">Student List</button>
-            </div>
-            <div class="logout">
-                <form action="./includes/logout.inc.php" method="post">
-                    <button name="logout">Logout</button>
-                </form>
-            </div>
-        </div>
+    <div class="side_nav">		
+		<ul>
+			<li><a href='./'>Home</a></li>
+			<li>
+				<a href="javascript:void(0)" class='studentNav'>Student <span class="material-symbols-outlined">arrow_drop_down</span></a>
+				
+				<ul class='subNav'>
+					<li><a href='./studentsList.php'>Students list</a></li>
+					<li><a href='./studentsAction.php'>Students action</a></li>
+					<li><a href='#'>Student 3</a></li>
+				</ul>
+			</li>
+			<li><a href='javascript:void(0)' class='studentNav'>Sample 1 <span class="material-symbols-outlined">arrow_drop_down</span></a>
+				<ul class='subNav' >
+					<li><a href='#'>Student 1</a></li>
+					<li><a href='#'>Student 2</a></li>
+					<li><a href='#'>Student 3</a></li>
+				</ul>
+			</li>
+			<li><a href='#'>Sample 2</a>
+			</li>
+			<li>
+				<div class="logout">
+					<form action="./includes/logout.inc.php" method="post">
+						<button name="logout">Logout</button>
+					</form>
+				</div>
+			</li>
+		</ul>
+		
+	</div>
+    
     <div class="container_body">
-        <?php include_once('header.php'); ?>
-
         <div class="profile_photo">
             <div class="container_first">
                 <div class="prof_photo">

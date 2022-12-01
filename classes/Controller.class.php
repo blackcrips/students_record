@@ -192,6 +192,8 @@ class  Controller extends Model
             return "ADD TASK";
         }else if($arrayPageName[2] == "studentsList.php"){
             return "Students List";
+        } else if($arrayPageName[2] == "studentsAction.php"){
+            return "ADD, EDIT, UPDATE OR DELETE STUDENT RECORD";
         }
     }
 

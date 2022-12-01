@@ -328,4 +328,12 @@ class Students {
     }
 
 
+    // STUDENTS ACTION
+
+    hideOverlay()
+    {
+        return($(this).firstParam);
+    }
+
+
 }

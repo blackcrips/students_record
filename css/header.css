@@ -134,23 +134,18 @@
     font-weight: 700;
   }
 
-  
   .side_nav {
     display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 120px;
-    bottom: 22px;
-    left: -20%;
-    background-color: #002B5B;
-    width: 220px;
-    transition: all 1s ease-in-out;
-    padding-top: 20px;
-    opacity: 0;
-  }
-
-  .dashboard {
-    padding-top: 15px;
+      flex-direction: column;
+      position: absolute;
+      top: 120px;
+      bottom: 0;
+      left: -20%;
+      background-color: #002B5B;
+      width: 220px;
+      transition: all 1s ease-in-out;
+      padding-top: 20px;
+      opacity: 0;
   }
 
   .side_nav.active {
@@ -158,41 +153,68 @@
     opacity: 1;
     transition: all 1s ease-in-out;
   }
-
-  .side_nav div {
-    display: flex;
+  
+  .side_nav ul {
+    background-color: #002B5B;
     width: 100%;
   }
-
-  .logout {
-    display: flex;
-    width: 100%;
+  
+  .side_nav ul li {
+    list-style: none;
   }
-
-  .logout form {
-    width: 100%;
-  }
-
-  .side_nav div button,
-  .logout form button {
-    font-size: 22px;
-    font-weight: 600;
-    font-family: sans-serif;
-    width: 100%;
-    padding: 5px;
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid #eee;
-    color: #fff;
-  }
-
-  .side_nav div button:hover,
-  .logout form button:hover {
-    cursor: pointer;
+  
+  .side_nav ul li a:hover,
+  .side_nav ul li div button:hover{
     background-color: #2B4865;
-    outline: none;
+    cursor: pointer;
   }
-
+  
+    .side_nav ul li a {
+    text-decoration: none;
+    font-size: 1.1em;
+    color: #fff;
+    display: block;
+    position: relative;
+    padding: 10px;	
+    width: 100%;		
+  }
+  
+  .side_nav ul li .subNav{
+    display: block;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.5s;
+    background-color: #0d396a;
+  }
+  
+  .side_nav ul li .subNav.show{
+    overflow: show;
+    height: 140px;
+    transition: all 0.5s;
+  }
+  
+  .side_nav ul li .subNav li a{
+    padding-left: 30px;
+  }
+  
+  .side_nav ul li a span {
+    position: absolute;
+    display: block;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    
+  }
+  
+  .side_nav ul li div button{
+    font-size: 1.1em;
+    color: #fff;
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+  }
 
   .container-footer {
     width: 100%;

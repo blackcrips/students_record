@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+    .container__studentsAction {
+      height: 600px;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      position: relative;
+    }
+
+    .container__studentsAction .studentsAction__single{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 100%;
+        left: 0;
+        display: flex;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 1s ease-in-out;
+    }
+    
+    .studentsAction__single.active {
+        right: 0;
+        overflow: auto;
+        transition: all 1s ease-in-out;
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .container__studentsAction .studentsAction__multiple{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 100%;
+        display: flex;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 1s ease-in-out;
+        background-color: red;
+    }
+    
+    .studentsAction__multiple.active {
+        left: 0;
+        overflow: auto;
+        transition: all 1s ease-in-out;
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .studentsAction__leftContent {
+        position: relative;
+        display: flex;
+        transition: all 0.5s;
+        background-color: #ccc;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .stdAction__back {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 1em;
+        font-weight: bold;
+        padding-right: 10px;
+    }
+    
+    .single_actionOverlay{
+        background-color: rgba(0, 0, 0, 0.5);
+        min-height: 100%;
+        width: 49%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 2em;
+        font-weight: bold;
+    }
+
+    .multiple_actionOverlay {
+        background-color: rgba(250, 0, 0, 0.5);
+        min-height: 100%;
+        width: 49%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 2em;
+        font-weight: bold;
+    }
+
+    .multiple_actionOverlay:hover,
+    .single_actionOverlay:hover{
+        opacity: 1;
+        cursor: pointer;
+        transition: all 0.5s;
+    }
+    
+    
+
+
+
+
+
+
+    .showLeftOverlay {
+        position: absolute;
+        top: 0;
+        right: 1%;
+        width: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        transition: all 1s;
+    }
+    
+    .single__tag.showLeftTag {
+        display: block;
+        max-height: 35px;
+        color: red;
+        opacity: 1;
+        top: 0;
+        right: 0;
+        transition: all 0.4s;
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+

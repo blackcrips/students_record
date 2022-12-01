@@ -20,10 +20,12 @@ menuBtn.addEventListener('click', () => {
   }
 });
 
-$('.btn__dashboard').click(function(){
-  window.location.href ="./";
+$('.studentNav').each(function(){
+	$(this).click(function(){
+		if($(this).next().hasClass('show')){
+			$(this).next().removeClass('show');
+		} else {
+			$(this).next().addClass('show');
+		}
+	});
 });
-
-document.querySelector('.btn__student_list').addEventListener('click',(function(){
-    window.location.href = 'studentsList.php';
-}))
