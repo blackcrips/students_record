@@ -3,6 +3,22 @@
 
 class Model extends Dbh
 {
+    protected function getTableColumnNames($tableName)
+    {
+        $sql = "SELECT Column_name FROM INFORMATION_SCHEMA.Columns WHERE TABLE_NAME = ?";
+         $stmt = $this->connect()->prepare($sql);
+        $stmt ->execute([$tableName]);
+        $results = $stmt->fetchAll();
+
+        $arrayOfColumnNames = [];
+
+        for($i = 1; $i < count($results) - 1;$i++){
+            array_push($arrayOfColumnNames,$results[$i]['Column_name']);
+        }
+
+        return $arrayOfColumnNames;
+    }
+
     protected function studentCount()
     {
         $sql = "SELECT count(id) AS studentCount FROM students_personal_profile";
@@ -239,6 +255,32 @@ class Model extends Dbh
         exit(json_encode($results));
     }
 
+    protected function sampleNames($tableName)
+    {
+        // $sql = "SELECT * FROM students_personal_profile JOIN students_school_profile LIMIT 1";
+        // $stmt = $this->connect()->prepare($sql);
+        // $stmt ->execute();
+
+        // $results = $stmt->fetchAll();
+
+        // return count($results[0]) - 3;
+        $columnNames = $this->getTableColumnNames($tableName);
+
+        $dynamicQuestionMark = [];
+
+        for($i = 0; $i < count($columnNames);$i++){
+            array_push($dynamicQuestionMark, "?");
+        }
+
+        $sqlFirstQuery = "INSERT INTO $tableName ('";
+        $sampleQueryColumn =  implode("','", $columnNames);
+        $sqlLastQuery = "') VALUES (";
+
+
+        echo $sqlFirstQuery . $sampleQueryColumn . $sqlLastQuery . implode(',', $dynamicQuestionMark) . ")";
+        echo '<br>';
+        echo count($columnNames);
+    }
 
 
 

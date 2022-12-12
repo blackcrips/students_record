@@ -305,6 +305,12 @@ class  Controller extends Model
         return $this->getSectionList();
     }
 
+    public function uploadStudents($studentsLists)
+    {
+        // return $studentsLists[0];
+        return $this->sampleNames('students_school_profile');
+    }   
+
     
 
 
