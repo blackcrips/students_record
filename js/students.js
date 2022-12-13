@@ -227,8 +227,8 @@ class Students {
         $('.std__overlay').on('click',function(){
             $(this).removeClass('active');
             $('.stdIndividual_infoContainer').removeClass('active');
-            $('#body').css('overflow','scroll');
-            
+            $('.body').css('overflow','scroll');
+
             setTimeout(function() {
                 $('.stdIndividual_infoContainer').children().remove();
             }, 500);

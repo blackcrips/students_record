@@ -6,13 +6,31 @@
         <div class="single_actionOverlay">SINGLE STUDENTS ACTION</div>
         <div class="studentsAction__single">
             <div class="studentsAction__leftContent">
-                <div class="stdAction__back"><< View Multiple</div>
+                <div class="stdAction__hideLeft"><< View Multiple</div>
                 <div class="stdContent__details">CONTENTS HERE</div>
             </div>
         </div>
 
         <div class="multiple_actionOverlay">MULTIPLE STUDENTS ACTION</div>
-        <div class="studentsAction__multiple">asdfasdfasdf</div>
+        <div class="studentsAction__multiple">
+            <div class="studentsAction__rightContent">
+                <div class="stdAction__hideRight">View Single >> </div>
+                <div class="stdContent__details">
+                    <h1>UPLOAD MULTIPLE DATA</h1>
+                    <span id="multipleUpload-span">Choose File</span>
+                    <form action="./includes/uploadMultipleStudentsRecord.inc.php" method="POST" enctype="multipart/form-data" id="multipleUplaod-form">
+                        <!-- <input type="file" name="multiple-upload" id="multiple-upload" hidden /> -->
+                    </form>
+                    <div>
+                        Please make sure to follow the correct template header. You can download the template 
+                        <a href="./uploadMultipleTemplate.xlsx" download="Multiple-upload-template">here</a>.
+                    </div>
+                    <div class="multiple_action">
+                        <button class="btn btn-primary" id="multipleUpload-submit" disabled>Upload</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         
     </div>
 

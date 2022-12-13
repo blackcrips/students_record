@@ -15,21 +15,6 @@
     width: 100%;
   }
 
-  .container-content {
-    position: relative;
-    margin-left: 0;
-    transition: all 1s ease-in-out;
-    border: 1px solid #ccc;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .container-content.active {
-    margin-left: 220px;
-    transition: all 1s ease-in-out;
-  }
-
   .container-content .records {
     display: flex;
     width: 100%;
