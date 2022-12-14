@@ -1,30 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
     .container__studentsAction {
-      height: 600px;
-      display: flex;
-      justify-content: space-between;
-      padding: 10px;
-      position: relative;
+        min-height: 80vh;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        position: relative;
+        overflow-x: hidden;
     }
 
-    .container__studentsAction .studentsAction__single{
+    .studentsAction__single{
         position: absolute;
         top: 0;
         bottom: 0;
+        left: -100%;
         right: 100%;
-        left: 0;
+        background-color: #eee;
         display: flex;
-        opacity: 0;
+        justify-content: center;
+        align-items: Center;
         pointer-events: none;
-        transition: all 1s ease-in-out;
+        transition: all 1s ease-in-out; 
     }
     
     .studentsAction__single.active {
+        left: 0;
         right: 0;
         overflow: auto;
         transition: all 1s ease-in-out;
-        opacity: 1;
         pointer-events: all;
     }
 
@@ -32,7 +35,7 @@
         position: absolute;
         top: 0;
         bottom: 0;
-        right: 0;
+        right: -100%;
         left: 100%;
         display: flex;
         opacity: 0;
@@ -44,20 +47,11 @@
     
     .studentsAction__multiple.active {
         left: 0;
+        right: 0;
         overflow: auto;
         transition: all 1s ease-in-out;
         opacity: 1;
         pointer-events: all;
-    }
-
-    .studentsAction__leftContent {
-        position: relative;
-        display: flex;
-        transition: all 0.5s;
-        background-color: #ccc;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
     }
 
     .studentsAction__rightContent {
@@ -75,7 +69,7 @@
         position: relative;
         min-width: 90%;
         min-height: 80%;
-        background-color: #fff;
+        background-color: #eee;
         border-radius: 5px;
         justify-content: center;
         align-items: center;
@@ -117,6 +111,90 @@
         padding-right: 10px;
     }
 
+    .container__singleEdit {
+        min-width: 60%;
+        padding: 15px;
+        background-color: #fff;
+        border-radius: 5px;
+    }
+    
+    .container__singleEdit select,
+    .container__singleEdit input {
+        font-size: 1.2em;
+        padding: 3px;
+    }
+    
+    .singleEdit__searchCont {
+        width: 100%;
+        margin-bottom: 20px;
+        
+    }
+    
+    .singleEdit__searchCont .search-message {
+        display: flex;
+        flex-direction: column;
+        margin-top: 5px;
+        color: red;
+        font-size: 12px;
+        font-style: italic;
+        font-weight: bold;
+    }
+    
+    .singleEdit__searchCont button {
+        margin-top: -7px;
+    }
+    
+    .detailsCont__row1st {
+        display: flex;
+    }
+    
+    .singleEdit__content {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .detailsCont__row1st input {
+        margin-right: 10px;
+    }
+    
+    #singleEdit__address {
+        width: 700px;
+    }
+    
+    #singleEdit__gender {
+        width: 230px;
+    }
+    
+    .singleEdit__content label {
+        text-align: center;
+        font-style: italic;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    
+    .container__singleEdit table {
+        background-color: #fff;
+    }
+    
+    .container__singleEdit table tr td {
+        padding-bottom: 5px;
+        padding-left: 10px;
+        white-space: nowrap;
+    }
+    
+    .stdCrud_viewSingle {
+        position: absolute;
+        display: flex;
+        top: 5px;
+        left: 5px;
+        color: #000;
+        font-size: 1em;
+        font-weight: bold;
+    }
+    .stdCrud_viewSingle:hover {
+        cursor: pointer;
+    }
+
     .stdAction__hideRight {
         position: absolute;
         top: 0;
@@ -136,6 +214,19 @@
         color: #fff;
         font-size: 2em;
         font-weight: bold;
+    }
+
+    .singleEdit__actionButton {
+        justify-content: flex-end;
+        display: flex;
+    }
+    
+    .singleEdit__actionButton button {
+        margin-right: 10px;
+    }
+    
+    #actionButton__edit {
+        display: none;
     }
 
     .multiple_actionOverlay {

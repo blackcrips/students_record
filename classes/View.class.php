@@ -71,5 +71,14 @@ class  View extends Model
             return $this->listBySelectValue($selectValue);
         }        
     }
+
+    public function getStudentRecord($studentId)
+    {
+        if(!$this->singleStudentRecord($studentId)){
+            exit(json_encode(false));
+        } else {
+            exit(json_encode($this->singleStudentRecord($studentId)));
+        }
+    }
     
 }

@@ -85,24 +85,28 @@ $('#multipleUpload-submit').click(function(){
     }
 });
 
-// function initializeUpload()
-// {
-//     document.body.onfocus = checkUpload;
-//     console.log('checking');
-// }
 
-// function checkUpload()
-// {
-//     let fileUpload = document.getElementById('multiple-upload');
-//     if(fileUpload.value.length){
-//         alert('Files Loaded');
-//         console.log(fileUpload.value);
-//     } else {
-//         alert('Cancel clicked');
-//         console.log(fileUpload.value);
-//     }
+$('#singleEdit__searchSubmit').click(function(){
+	let stdId = $('#singleEdit__search').val();
+	let singleEditSearch = $('#singleEdit__search');
+	
+	if(singleEditSearch.val() == '' || singleEditSearch.val() == ' '){
+		emptySingleUpdateData();
+		$('#actionButton__add').show();
+		$('#actionButton__edit').hide();
+		return;
+	} else {
+		let studentsCRUD = new StudentsCRUD(stdId);
+        studentsCRUD.getSingleStudentRecord();
+        $('#actionButton__add').hide();
+		$('#actionButton__edit').show();
+	}
+});
 
-//     document.body.onfocus = null;
-//     console.log('checked');
-      
-// }
+function emptySingleUpdateData()
+{
+	$('[data-single-input]').each(function(){
+		$(this).val('');
+		searchID = '';
+	});
+}

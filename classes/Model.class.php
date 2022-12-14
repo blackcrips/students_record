@@ -255,6 +255,23 @@ class Model extends Dbh
         exit(json_encode($results));
     }
 
+    protected function singleStudentRecord($studentId)
+    {
+        $sql = 'SELECT * FROM students_personal_profile spp JOIN students_school_profile scf ON spp.id = scf.id WHERE scf.student_id = ?';
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$studentId]);
+        $row = $stmt->rowCount();
+
+        $result = $stmt->fetch();
+
+        if($row <= 0){
+            return false;
+        } else {
+            return $result;
+        }
+    }
+
+
     protected function sampleNames($tableName)
     {
         // $sql = "SELECT * FROM students_personal_profile JOIN students_school_profile LIMIT 1";
