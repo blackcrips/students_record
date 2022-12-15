@@ -85,6 +85,8 @@ $('#multipleUpload-submit').click(function(){
     }
 });
 
+let studentId = '';
+
 
 $('#singleEdit__searchSubmit').click(function(){
 	let stdId = $('#singleEdit__search').val();
@@ -107,6 +109,17 @@ function emptySingleUpdateData()
 {
 	$('[data-single-input]').each(function(){
 		$(this).val('');
-		searchID = '';
+		$('#singleEdit__search').val('');
 	});
 }
+
+$('#actionButton__delete').click(function(){
+    if(confirm("Are you sure you want to delete this record?")){
+        let studentsCRUD = new StudentsCRUD(studentId);
+        studentsCRUD.deleteSingleStudentRecord();
+        return;
+    } else {
+        return;
+    }
+    
+});

@@ -311,6 +311,11 @@ class  Controller extends Model
         return $this->sampleNames('students_school_profile');
     }   
 
+    public function deleteStudentRecord($studentId)
+    {
+        return $this->deleteThisStudentRecord($studentId);
+    }
+
     
 
 

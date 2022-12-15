@@ -299,6 +299,37 @@ class Model extends Dbh
         echo count($columnNames);
     }
 
+    protected function deleteThisStudentRecord($studentId)
+    {
+        $sql = "SELECT id FROM students_school_profile WHERE student_id = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$studentId]);
+        $rowCount = $stmt->rowCount();
+        
+        if($rowCount > 0){
+            $idLists = $stmt->fetchAll();
+            
+            foreach($idLists as $idList){
+                $sql = "DELETE FROM students_school_profile WHERE id = " . $idList['id'];
+                $stmt = $this->connect()->prepare($sql);
+                
+                if($stmt->execute()){
+                    $sql = "DELETE FROM students_personal_profile WHERE id = " . $idList['id'];
+                    $stmt = $this->connect()->prepare($sql);
+                    $stmt->execute();
+                } else {
+                    return false;
+                }
+            }
+
+            return true;
+
+
+        } else {
+            return false;
+        }
+    }
+
 
 
 }
